@@ -3,17 +3,27 @@
 
 int main(void)
 {
-  int i;
   char input[100];
   FILE* fp;
+  char c; 
   
-  fp = fopen("sample.txt","w");
+  fp = fopen("sample.txt","r"); //자체적으로 텍스트 파일을 만들고 거기에 쓰는 코드
+   
+  if(fp == NULL)
+   printf("파일을 못열음\n");
+   
+    #if 0
+  while((c = fgetc(fp))!= EOF){
+   putchar(c);
+  }
+  #endif
   
-  for(i=0;i<3;i++){
-  printf("input a word:");
-  scanf("%s",input); //배열은 &를 쓰지 않음. 
-  fprintf(fp, "%s\n" , input);
+
+  while(fgets(input,100,fp) > 0){
+   printf("%s",input);
 }
+
+
   
   fclose(fp);
   system("PAUSE");	
